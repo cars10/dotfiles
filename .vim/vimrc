@@ -1,10 +1,5 @@
 runtime! archlinux.vim
 
-" Behave like a windows programm, i.e. gives the expected functionality i.a. to
-" Ctrl-X, Ctrl-C, Ctrl-V, Ctrl-S, Ctrl-Z, Ctrl-Y, Ctrl-A, Ctrl-F, and Ctrl-H.
-source $VIMRUNTIME/mswin.vim
-behave mswin
-
 " Plugins
 " vim-plug 
 call plug#begin('~/.vim/plugged')

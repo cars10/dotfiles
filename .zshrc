@@ -84,17 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias rake='noglob rake'
+# Extend user shell scripts
+[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
+
 DEFAULT_USER=$USER
-eval $(dircolors -b ~/.dir_colors)
-
-# java fixes
-_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
-
-export PATH="$PATH:$HOME/.rvm/bin"   # Add RVM to PATH for scripting
-export PATH="$HOME/.cargo/bin:$PATH" # Add cargo bin to PATH to use rust binaries
-export PATH=$PATH:/usr/local/go/bin  # Add go bin to PATH
-
-# Source rvm scripts
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-

@@ -1,0 +1,71 @@
+runtime! archlinux.vim
+
+" Behave like a windows programm, i.e. gives the expected functionality i.a. to
+" Ctrl-X, Ctrl-C, Ctrl-V, Ctrl-S, Ctrl-Z, Ctrl-Y, Ctrl-A, Ctrl-F, and Ctrl-H.
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+" Plugins
+" vim-plug 
+call plug#begin('~/.vim/plugged')
+    " Fuzzy matching files. Usage: :Files, :FZF, ..
+    Plug 'junegunn/fzf.vim'
+    " Status bar
+    Plug 'bling/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    " git: show line markers for changed lines
+    Plug 'airblade/vim-gitgutter'
+    " Popular git commands. Usage: :Gblame, :Gstatus, ..
+    Plug 'tpope/vim-fugitive'
+    " Syntax highlighting for various languages, automatically loaded on demand
+    Plug 'sheerun/vim-polyglot'
+    " Automatically comment out blocks of code. Usage: gcc, gc3j, v<select>gc
+    Plug 'tpope/vim-commentary'
+    " Automatically insert closing tags
+    Plug 'docunext/closetag.vim'
+    " Automaticall insert 'end' in ruby
+    Plug 'tpope/vim-endwise'
+call plug#end()
+
+" Plugin configuration
+" airline theme
+let g:airline_theme='deus'
+
+" Misc settings
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set updatetime=250
+
+" Keymappings
+" map FZF to CTRL+P
+nmap <C-p> :Files<CR>
+
+" Visuals
+set number
+set ruler
+set linebreak
+set showbreak=+++
+set textwidth=100
+set showmatch
+set visualbell
+syntax on
+colorscheme delek
+
+" Case sensivity
+set hlsearch
+set smartcase
+set ignorecase
+set incsearch
+ 
+" Indentation
+set autoindent
+set expandtab
+set shiftwidth=4
+set smartindent
+set smarttab
+set softtabstop=4
+ 
+set undolevels=1000
+set backspace=indent,eol,start
+set wildmenu
+

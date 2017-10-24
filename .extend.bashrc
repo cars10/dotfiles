@@ -27,15 +27,18 @@ alias update='yaourt -Syua'
 #####################################################################################
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
+# default editor
 export EDITOR=/usr/bin/vim
+# Fix for ugly intellij
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
-
+# $PATH adjustments for various programming language environments
 export PATH="$PATH:$HOME/.rvm/bin"   # Add RVM to PATH for scripting
 export PATH="$HOME/.cargo/bin:$PATH" # Add cargo bin to PATH to use rust binaries
 export PATH="$PATH:/usr/local/go/bin"  # Add go bin to PATH
-
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/chromium
+# FZF configuration
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 
 
 #####################################################################################

@@ -73,3 +73,5 @@ ex ()
 xhost +local:root > /dev/null 2>&1
 alias rake='noglob rake'
 eval $(dircolors -b ~/.dir_colors)
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+

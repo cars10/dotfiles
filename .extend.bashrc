@@ -33,7 +33,7 @@ alias gdc='git diff --cached'
 alias gf='git fetch'
 alias gpl='git pull'
 alias gps='git push'
-alias ga='git add .'
+alias ga='git add'
 alias gc='git commit'
 
 

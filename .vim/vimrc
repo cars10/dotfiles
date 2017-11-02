@@ -3,23 +3,28 @@ runtime! archlinux.vim
 " Plugins
 " vim-plug 
 call plug#begin('~/.vim/plugged')
-    " Fuzzy matching files. Usage: :Files, :FZF, ..
+    " FZF: fuzzy matching files. Usage: :Files, :FZF, ..
     Plug 'junegunn/fzf.vim'
-    " Status bar
+    " Airline: vim status bar
     Plug 'bling/vim-airline'
+    " Airline themes
     Plug 'vim-airline/vim-airline-themes'
-    " git: show line markers for changed lines
+    " Gitgutter: show line markers for changed lines
     Plug 'airblade/vim-gitgutter'
-    " Popular git commands. Usage: :Gblame, :Gstatus, ..
+    " Fugitive: popular git commands. Usage: :Gblame, :Gstatus, ..
     Plug 'tpope/vim-fugitive'
-    " Syntax highlighting for various languages, automatically loaded on demand
+    " Polyglot: syntax highlighting for various languages, automatically loaded on demand
     Plug 'sheerun/vim-polyglot'
-    " Automatically comment out blocks of code. Usage: gcc, gc3j, v<select>gc
+    " Commentary: automatically comment out blocks of code. Usage: gcc, gc3j, v<select>gc
     Plug 'tpope/vim-commentary'
-    " Automatically insert closing tags
+    " Closetag: automatically insert closing tags
     Plug 'docunext/closetag.vim'
-    " Automaticall insert 'end' in ruby
+    " Endwise: automaticall insert 'end' in ruby
     Plug 'tpope/vim-endwise'
+    " Bufferline: show open buffers - automatically integrated in airline
+    Plug 'bling/vim-bufferline'
+    " Eunuch: Commonly used UNIX shell commands as vim commands. Usage: :Delete, :Rename, :Chmod, ..
+    Plug 'tpope/vim-eunuch'
 call plug#end()
 
 " Plugin configuration
@@ -27,13 +32,22 @@ call plug#end()
 let g:airline_theme='deus'
 
 " Misc settings
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set updatetime=250
+" be iMproved, required
+set nocompatible              
+filetype off
+set updatetime=250         
+
+set undolevels=1000
+set backspace=indent,eol,start
+set wildmenu
 
 " Keymappings
 " map FZF to CTRL+P
 nmap <C-p> :Files<CR>
+" map :Buffers to ;
+nmap ; :Buffers<CR>
+" map :bd (kill current buffer) to CTRL+W
+nmap <C-w> :bd<CR>
 
 " Visuals
 set number
@@ -60,7 +74,3 @@ set smartindent
 set smarttab
 set softtabstop=4
  
-set undolevels=1000
-set backspace=indent,eol,start
-set wildmenu
-

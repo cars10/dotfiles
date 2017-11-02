@@ -9,8 +9,7 @@ This repo includes most of the dotfiles that i use on every system.
 | `.extend.bashrc`                                          | `bash` / `zsh` configuration file. Includes aliases, env variables, etc.      |
 | `.gtkrc-2.0`                                              | `GTK 2` theme configuration                                                   |
 | `.nanorc`                                                 | `nano` syntax highlighting                                                    | 
-| `.rofi`                                                   | `rofi` color theme - [Rofi](https://github.com/DaveDavenport/rofi/)           |
-| `.Xresources`                                             | `XServer` DPI and display settings                                            | 
+| `.Xresources`                                             | `XServer` DPI and display settings, rofi theme                                | 
 | `.yaourtrc`                                               | `yaourt` aur helper configuration                                             | 
 | `.zshrc`                                                  | `Z shell` configuration                                                       |
 | `.config/blender/../userpref.blend`                       | `blender` 3D software configuration                                           | 

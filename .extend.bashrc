@@ -17,7 +17,7 @@ alias free='free -m'                      # show sizes in MB
 alias tailf="tail -f"
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias cd..="cd .."
-alias mirrors='sudo pacman-mirrors -g'
+alias mirrors='sudo pacman-mirrors -f 15'
 alias printer='system-config-printer'
 alias update='yaourt -Syua'
 

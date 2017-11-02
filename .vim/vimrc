@@ -31,23 +31,27 @@ call plug#end()
 " airline theme
 let g:airline_theme='deus'
 
+" Keymappings
+" map FZF to CTRL+p
+nmap <C-p> :Files<CR>
+" map :Buffers (list all buffers - with fuzzy matching) to ;
+nmap ; :Buffers<CR>
+" map :bd (kill current buffer) to CTRL+w
+nmap <C-w> :bd<CR>
+" map :w to CTRL+s
+nmap <C-w> :w<CR>
+" map :wq to CTRL+q
+nmap <C-q> :wq<CR>
+
 " Misc settings
 " be iMproved, required
 set nocompatible              
 filetype off
 set updatetime=250         
-
+set noswapfile
 set undolevels=1000
 set backspace=indent,eol,start
 set wildmenu
-
-" Keymappings
-" map FZF to CTRL+P
-nmap <C-p> :Files<CR>
-" map :Buffers to ;
-nmap ; :Buffers<CR>
-" map :bd (kill current buffer) to CTRL+W
-nmap <C-w> :bd<CR>
 
 " Visuals
 set number

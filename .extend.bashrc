@@ -34,7 +34,7 @@ alias gf='git fetch'
 alias gpl='git pull'
 alias gps='git push'
 alias ga='git add'
-alias gc='git commit'
+alias gc='git commit --verbose'
 
 
 #####################################################################################
@@ -90,6 +90,8 @@ ex ()
 xhost +local:root > /dev/null 2>&1
 # Fix for ruby rake tasks
 alias rake='noglob rake'
+# Prevent the terminal from catching CTRL+s and CTRL+q 
+stty -ixon
 
 
 #####################################################################################

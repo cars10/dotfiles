@@ -1,25 +1,32 @@
 #
 # ~/.extend.bashrc
-# loaded in 
+#
+# I use this file as the main shell configuration.
+# This file is sourced in every .*bash*|.*profile* file to have the same aliases and variables
+# available in every shell.
+# 
+# Example usage:
+#   [[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
+# 
+# This is included in all the shell files, for example
 #   ~/.bashrc 
 #   ~/.bash_profile
+#   ~/.profile
 #   ~/.zshrc
+#   ...
 #
-
-[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 #####################################################################################
 ### Shell aliases
 #####################################################################################
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias tailf="tail -f"
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias cd..="cd .."
-alias mirrors='sudo pacman-mirrors -f 15'
-alias printer='system-config-printer'
-alias update='yaourt -Syua'
+alias cp="cp -i"                            # confirm before overwriting something
+alias df='df -h'                            # human-readable sizes
+alias tailf="tail -f"                       # 'tailf' is deprecated on arch.
+alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F -h'
+alias cd..="cd .."                          # fix stupid typo
+alias mirrors='sudo pacman-mirrors -f 15'   # Update pacman mirrorslist with 15 fastest mirrors
+alias printer='system-config-printer'       # .. because i tend to forget the command
+alias update='yaourt -Syua'                
 
 
 #####################################################################################
@@ -29,24 +36,23 @@ alias update='yaourt -Syua'
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 # default editor
 export EDITOR=/usr/bin/vim
-# Fix for ugly intellij
+# Fix for ugly font rendering in intellij (and it's derivates: rubymine, webstorm, etc)
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # $PATH adjustments for various programming language environments
-export PATH="$PATH:$HOME/.rvm/bin"   # Add RVM to PATH for scripting
-export PATH="$HOME/.cargo/bin:$PATH" # Add cargo bin to PATH to use rust binaries
+export PATH="$PATH:$HOME/.rvm/bin"     # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.cargo/bin"   # Add cargo bin to PATH to use rust binaries
 export PATH="$PATH:/usr/local/go/bin"  # Add go bin to PATH
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/chromium
-# FZF configuration
+# FZF: use rg to search
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 
 
 #####################################################################################
 ### Shell functions
 #####################################################################################
-
-# # ex - archive extractor
-# # usage: ex <file>
+# ex - archive extractor
+# usage: ex <file>
 ex ()
 {
   if [ -f $1 ] ; then
@@ -74,7 +80,17 @@ ex ()
 ### Misc
 #####################################################################################
 xhost +local:root > /dev/null 2>&1
+# Fix for ruby rake tasks
 alias rake='noglob rake'
+
+
+#####################################################################################
+# Includes
+#####################################################################################
+# eval dircolors config
 eval $(dircolors -b ~/.dir_colors)
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Load rvm into the shell (as a functionn)
+[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+# Load bash completion scripts. Depending on your distro these might not be available at this path.
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 

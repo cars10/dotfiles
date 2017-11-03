@@ -33,7 +33,8 @@ This repo includes most of the dotfiles that i use on every system.
 | QT 4 / 5      | Style is set to `GTK` |
 | Awesome WM    | Custom theme |
 | Rofi          | Custom theme |
-| Sakura        | Custom theme | 
+| Sakura        | Custom theme |
+| vim           | Delek        |
 
 ## Fonts
 | Where | Font |

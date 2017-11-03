@@ -43,3 +43,6 @@ This repo includes most of the dotfiles that i use on every system.
 | IDE's, editors, etc | [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) | 
 | GTK/QT Applications | `Noto Sans`
 
+## TODO
+- Screenshot
+- Awesome config

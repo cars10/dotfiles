@@ -39,7 +39,7 @@ nmap ; :Buffers<CR>
 " map :bd (kill current buffer) to CTRL+w
 nmap <C-w> :bd<CR>
 " map :w to CTRL+s
-nmap <C-w> :w<CR>
+nmap <C-s> :w<CR>
 " map :wq to CTRL+q
 nmap <C-q> :wq<CR>
 

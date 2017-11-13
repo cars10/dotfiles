@@ -43,6 +43,17 @@ This repo includes most of the dotfiles that i use on every system.
 | IDE's, editors, etc | [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) | 
 | GTK/QT Applications | `Noto Sans`
 
+## Vim setup
+1. Install [vim-plug](https://github.com/junegunn/vim-plug)
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+2. Copy `.vim/vimrc` to `~/.vim/vimrc` (or to `~/.vimrc`)
+3. Open `vim`
+4. Run `:PlugInstall`
+5. Restart vim
+
 ## TODO
 - Screenshot
 - Awesome config

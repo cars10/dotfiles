@@ -27,6 +27,7 @@ alias cd..="cd .."                          # fix stupid typo
 alias mirrors='sudo pacman-mirrors -f 15'   # Update pacman mirrorslist with 15 fastest mirrors
 alias printer='system-config-printer'       # .. because i tend to forget the command
 alias update='yaourt -Syua'                
+alias sidekiq='bundle exec sidekiq -L /dev/stdout'
 # Git
 alias gd='git diff'
 alias gdc='git diff --cached'

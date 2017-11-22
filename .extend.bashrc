@@ -28,6 +28,7 @@ alias mirrors='sudo pacman-mirrors -f 15'   # Update pacman mirrorslist with 15 
 alias printer='system-config-printer'       # .. because i tend to forget the command
 alias update='yaourt -Syua'                
 alias sidekiq='bundle exec sidekiq -L /dev/stdout'
+alias bundle='bundle install -j 4'
 # Git
 alias gd='git diff'
 alias gdc='git diff --cached'

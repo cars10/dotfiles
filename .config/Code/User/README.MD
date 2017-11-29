@@ -12,4 +12,3 @@ This file sets some key bindings to mimick those of intellij.
 | SHIFT+ALT+UP | Move line up |
 | SHIFT+ALT+DOWN | Move line down |
 | CTRL+w | mark current word |
-| -------- | -------------- |

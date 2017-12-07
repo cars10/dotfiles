@@ -55,6 +55,10 @@ export PATH="$PATH:/usr/local/go/bin"  # Add go bin to PATH
 export BROWSER=/usr/bin/chromium
 # FZF: use rg to search
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
+# History
+HISTFILE=~/.bash_history
+HISTFILESIZE=1000
+HISTSIZE=1000
 
 
 #####################################################################################

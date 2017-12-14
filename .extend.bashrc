@@ -19,6 +19,7 @@
 #####################################################################################
 ### Shell aliases
 #####################################################################################
+alias vi="vim"
 alias cp="cp -i"                            # confirm before overwriting something
 alias df='df -h'                            # human-readable sizes
 alias tailf="tail -f"                       # 'tailf' is deprecated on arch.
@@ -57,8 +58,8 @@ export BROWSER=/usr/bin/chromium
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 # History
 HISTFILE=~/.bash_history
-HISTFILESIZE=1000
-HISTSIZE=1000
+HISTFILESIZE=25000
+HISTSIZE=25000
 
 
 #####################################################################################

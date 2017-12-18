@@ -25,7 +25,7 @@ alias df='df -h'                            # human-readable sizes
 alias tailf="tail -f"                       # 'tailf' is deprecated on arch.
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F -h'
 alias cd..="cd .."                          # fix stupid typo
-alias mirrors='sudo pacman-mirrors -f 15'   # Update pacman mirrorslist with 15 fastest mirrors
+alias mirrors='sudo pacman-mirrors -f 25'   # Update pacman mirrorslist with 15 fastest mirrors
 alias printer='system-config-printer'       # .. because i tend to forget the command
 alias update='yaourt -Syua'                
 alias sidekiq='bundle exec sidekiq -L /dev/stdout'

@@ -11,5 +11,14 @@
         "useRustfmt": true
     },
     "rust.build_lib": true,
-    "workbench.colorTheme": "Atom One Dark"
+    "workbench.colorTheme": "Atom One Dark",
+    "vsicons.dontShowNewVersionMessage": true,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "files.associations": {
+        "*.yml": "ansible"
+    },
+    "editor.tabSize": 2,
+    "workbench.editor.enablePreview": false
 }
+

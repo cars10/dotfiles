@@ -25,6 +25,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'bling/vim-bufferline'
     " Eunuch: Commonly used UNIX shell commands as vim commands. Usage: :Delete, :Rename, :Chmod, ..
     Plug 'tpope/vim-eunuch'
+    " Emmet: auto expand abbrevations in html etc
+    Plug 'mattn/emmet-vim'
 call plug#end()
 
 " Plugin configuration

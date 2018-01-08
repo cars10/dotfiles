@@ -68,8 +68,7 @@ HISTSIZE=25000
 #####################################################################################
 # ex - archive extractor
 # usage: ex <file>
-ex ()
-{
+ex () {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
@@ -88,6 +87,12 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+# copyfile - copy content of file to clipboard
+# usage: copyfile /path/to/some/file
+copyfile () {
+  cat $1 | xclip -selection c
 }
 
 

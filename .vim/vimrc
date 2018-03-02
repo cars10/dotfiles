@@ -38,8 +38,6 @@ let g:airline_theme='deus'
 nmap <C-p> :Files<CR>
 " map :Buffers (list all buffers - with fuzzy matching) to ;
 nmap ; :Buffers<CR>
-" map :bd (kill current buffer) to CTRL+w
-nmap <C-w> :bd<CR>
 " map :w to CTRL+s
 nmap <C-s> :w<CR>
 " map :wq to CTRL+q

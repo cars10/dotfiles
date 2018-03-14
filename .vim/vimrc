@@ -11,22 +11,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     " Gitgutter: show line markers for changed lines
     Plug 'airblade/vim-gitgutter'
-    " Fugitive: popular git commands. Usage: :Gblame, :Gstatus, ..
-    Plug 'tpope/vim-fugitive'
     " Polyglot: syntax highlighting for various languages, automatically loaded on demand
     Plug 'sheerun/vim-polyglot'
-    " Commentary: automatically comment out blocks of code. Usage: gcc, gc3j, v<select>gc
-    Plug 'tpope/vim-commentary'
-    " Closetag: automatically insert closing tags
-    Plug 'docunext/closetag.vim'
-    " Endwise: automaticall insert 'end' in ruby
-    Plug 'tpope/vim-endwise'
     " Bufferline: show open buffers - automatically integrated in airline
     Plug 'bling/vim-bufferline'
-    " Eunuch: Commonly used UNIX shell commands as vim commands. Usage: :Delete, :Rename, :Chmod, ..
-    Plug 'tpope/vim-eunuch'
-    " Emmet: auto expand abbrevations in html etc
-    Plug 'mattn/emmet-vim'
+    " Youcompleteme: Autocomplete
+    Plug 'valloric/youcompleteme'
 call plug#end()
 
 " Plugin configuration
@@ -36,12 +26,10 @@ let g:airline_theme='deus'
 " Keymappings
 " map FZF to CTRL+p
 nmap <C-p> :Files<CR>
-" map :Buffers (list all buffers - with fuzzy matching) to ;
-nmap ; :Buffers<CR>
 " map :w to CTRL+s
 nmap <C-s> :w<CR>
-" map :wq to CTRL+q
-nmap <C-q> :q!<CR>
+" map :qa! to CTRL+q
+nmap <C-q> :qa!<CR>
 " map :w!! to 'save file with sudo'
 cmap w!! w !sudo tee > /dev/null %
 

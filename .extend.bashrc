@@ -56,7 +56,7 @@ export PATH="$PATH:/usr/local/go/bin"  # Add go bin to PATH
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/chromium
 # FZF: use rg to search
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 # History
 HISTFILE=~/.bash_history
 HISTFILESIZE=25000

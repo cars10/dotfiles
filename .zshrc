@@ -55,6 +55,9 @@ plugins=(git)
 # Source oh-my-zsh for theming
 source $ZSH/oh-my-zsh.sh
 
+# Load zsh-audocomplete
+[[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # Load shell configuration (containing aliases, ENV variables, etc)
 [[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 

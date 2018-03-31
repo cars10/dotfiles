@@ -193,7 +193,7 @@ local temp = lain.widget.temp({
     settings = function()
         if coretemp_now > 85 then
             widget:set_markup(markup.font(beautiful.font, markup.fg.color(beautiful.red, " " .. coretemp_now .. " °C ")))
-        elseif coretemp_now > 65 then
+        elseif coretemp_now > 70 then
             widget:set_markup(markup.font(beautiful.font, markup.fg.color(beautiful.orange, " " .. coretemp_now .. " °C ")))
         else
             widget:set_markup(markup.font(beautiful.font, " " .. coretemp_now .. "°C "))

@@ -16,6 +16,8 @@ local button_table = awful.util.table
 local markup = lain.util.markup
 local math = require("math")
 
+local xf86helpers = require("xf86helpers")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -166,7 +168,7 @@ function round(what, precision)
 end
 
 -- Clock
-clock_widget = wibox.widget.textclock(" %a, %d.%m   %H:%M ")
+clock_widget = wibox.widget.textclock(" %a, %d.%m.   %H:%M ")
 
 -- MEM
 local mem_icon = wibox.widget.imagebox(beautiful.mem_icon)
@@ -214,16 +216,16 @@ local bat_icon = wibox.widget.imagebox(beautiful.bat_icon)
 local bat = lain.widget.bat({
     notify = "on",
     timeout = 5,
-    n_perc = {5, 15},
+    n_perc = {5, 10},
     settings = function()
         widget:set_markup(markup.font(beautiful.font, bat_now.perc .. "% "))
         if bat_now.perc > 80 then
             batbar:set_color(beautiful.green)
-        elseif bat_now.perc <= 80 then
+        elseif bat_now.perc <= 80 and bat_now.perc > 40 then
             batbar:set_color(beautiful.blue)
-        elseif bat_now.perc < 40 then
+        elseif bat_now.perc <= 40 and bat_now.perc > 15 then
             batbar:set_color(beautiful.orange)
-        elseif bat_now.perc < 15 then
+        elseif bat_now.perc <= 15 then
             batbar:set_color(beautiful.red)
         end
         batbar:set_value(bat_now.perc/100)
@@ -235,6 +237,26 @@ local calendar = lain.widget.calendar({
     cal = "/usr/bin/env TERM=linux /usr/bin/cal",
     attach_to = { clock_widget }
 })
+
+-- Helper functions
+local notification_preset = { fg = "#202020", bg = "#CDCDCD" }
+
+local function volume_notification()
+    local get_volume = [[bash -c "amixer sget Master | tail -n 1 | awk '{print $4}' | tr -d '[]' | sed 's/%//'"]]
+    awful.spawn.easy_async(get_volume, function(stdout, stderr, reason, exit_code)
+        naughty.notify({ title = "Volume", text = tostring(tonumber(stdout)) .. '%', preset = notification_preset })
+    end)
+end
+
+local function increase_volume()
+    awful.util.spawn("amixer set Master 5+")
+    volume_notification()
+end
+
+local function decrease_volume()
+    awful.util.spawn("amixer set Master 5-")
+    volume_notification()
+end
 
 local function set_wallpaper(s)
   gears.wallpaper.maximized(beautiful.wallpaper, s, true)
@@ -322,14 +344,15 @@ globalkeys = button_table.join(
     awful.key({}, "Print", function() awful.util.spawn ("screen") end),
     awful.key({}, "XF86Calculator", function() awful.util.spawn ("copy_line_marker") end),
     awful.key({}, "Pause", function() awful.util.spawn ("screencast") end),
-    awful.key({}, "XF86MonBrightnessUp", function() awful.util.spawn ("xbacklight -inc 10") end),
-    awful.key({}, "XF86MonBrightnessDown", function() awful.util.spawn ("xbacklight -dec 10") end),
-    awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn ("amixer -c 1 set Master 1+") end),
-    awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn ("amixer -c 1 set Master 1-") end),
-    awful.key({}, "XF86AudioMute", function() awful.util.spawn ("amixer -c 1 -D pulse sset Master toggle") end),
+    awful.key({}, "XF86MonBrightnessUp", function() xf86helpers.brightness.inc() end),
+    awful.key({}, "XF86MonBrightnessDown", function() xf86helpers.brightness.dec() end),
+    awful.key({}, "XF86AudioRaiseVolume", function() xf86helpers.volume.inc() end),
+    awful.key({}, "XF86AudioLowerVolume", function() xf86helpers.volume.dec() end),
+    awful.key({}, "XF86AudioMute", function() xf86helpers.volume.mute() end),
     awful.key({}, "XF86AudioPlay", function() awful.util.spawn ("playerctl play-pause") end),
     awful.key({}, "XF86AudioNext", function() awful.util.spawn ("playerctl next") end),
     awful.key({}, "XF86AudioPrev", function() awful.util.spawn ("playerctl previous") end),
+    awful.key({}, "XF86Display", function() awful.util.spawn ("arandr") end),
     awful.key({ modkey,           }, "l",      function() awful.util.spawn( "dm-tool lock" ) end),
     -- Layout manipulation
     awful.key({ modkey }, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
@@ -527,11 +550,22 @@ awful.rules.rules = {
           focusable = false,
           below = true
       }
+    },
+    {
+        rule = {
+            class = "jetbrains-.*",
+            instance = "sun-awt-X11-XWindowPeer",
+            name = "win.*"
+        },
+        properties = {
+            floating = true,
+            focus = true,
+            focusable = false,
+            ontop = true,
+            placement = awful.placement.restore,
+            buttons = {}
+        },
     }
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
 -- }}}
 

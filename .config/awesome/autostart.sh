@@ -1,7 +1,7 @@
 #!/bin/bash
 # set monitor
-if [[ $(xrandr --listmonitors |grep HDMI1) ]]; then
-  xrandr --output HDMI-1 --primary --mode 1920x1080 --pos 1920x0 --output DP-1 --off --output eDP-1 --mode 1920x1080 --left-of HDMI-1
+if [[ $(xrandr --listmonitors |grep HDMI) ]]; then
+  xrandr --output VIRTUAL1 --off --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --off --output DP2 --off
   sleep 1
 fi
 
@@ -16,3 +16,6 @@ compton -b
 
 killall owncloud
 owncloud &
+
+killall nm-applet
+nm-applet &

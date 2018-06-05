@@ -19,12 +19,12 @@
 #####################################################################################
 ### Shell aliases
 #####################################################################################
-alias vi="vim"
-alias cp="cp -i"                            # confirm before overwriting something
+alias vi='vim'
+alias cp='cp -i'                            # confirm before overwriting something
 alias df='df -h'                            # human-readable sizes
-alias tailf="tail -f"                       # 'tailf' is deprecated on arch.
+alias tailf='tail -f'                       # 'tailf' is deprecated on arch.
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F -h'
-alias cd..="cd .."                          # fix stupid typo
+alias cd..='cd ..'                          # fix stupid typo
 alias mirrors='sudo pacman-mirrors -f 25'   # Update pacman mirrorslist with 15 fastest mirrors
 alias printer='system-config-printer'       # .. because i tend to forget the command
 alias update='yaourt -Syua'                
@@ -95,6 +95,10 @@ copyfile () {
   cat $1 | xclip -selection c
 }
 
+# Check if $1 is installed via pacman
+pmi () {
+  pacman -Q |grep $1
+}
 
 #####################################################################################
 ### Misc
@@ -104,7 +108,8 @@ xhost +local:root > /dev/null 2>&1
 alias rake='noglob rake'
 # Prevent the terminal from catching CTRL+s and CTRL+q 
 stty -ixon
-
+# disable beep
+xset b off
 
 #####################################################################################
 # Includes

@@ -221,9 +221,9 @@ local bat = lain.widget.bat({
         widget:set_markup(markup.font(beautiful.font, bat_now.perc .. "% "))
         if bat_now.perc > 80 then
             batbar:set_color(beautiful.green)
-        elseif bat_now.perc <= 80 and bat_now.perc > 40 then
+        elseif bat_now.perc <= 80 and bat_now.perc > 30 then
             batbar:set_color(beautiful.blue)
-        elseif bat_now.perc <= 40 and bat_now.perc > 15 then
+        elseif bat_now.perc <= 30 and bat_now.perc > 15 then
             batbar:set_color(beautiful.orange)
         elseif bat_now.perc <= 15 then
             batbar:set_color(beautiful.red)
@@ -233,8 +233,7 @@ local bat = lain.widget.bat({
 })
 
 -- Calendar
-local calendar = lain.widget.calendar({
-    cal = "/usr/bin/env TERM=linux /usr/bin/cal",
+local calendar = lain.widget.cal({
     attach_to = { clock_widget }
 })
 
@@ -558,12 +557,12 @@ awful.rules.rules = {
             name = "win.*"
         },
         properties = {
-            floating = true,
-            focus = true,
-            focusable = false,
-            ontop = true,
-            placement = awful.placement.restore,
-            buttons = {}
+    --        floating = true,
+    --        focus = true,
+    --        focusable = false,
+    --        ontop = true,
+    --        placement = awful.placement.restore,
+    --        buttons = {}
         },
     }
 }

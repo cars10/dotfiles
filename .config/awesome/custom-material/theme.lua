@@ -9,6 +9,8 @@ local lain = require("lain")
 local theme = {}
 local button_table = awful.util.table
 
+theme.scaling = 1.75
+
 theme_path = "~/.config/awesome/custom-material/"
 default_color = "#282A30"
 default_focus_color = "#555555"
@@ -34,9 +36,9 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = 4
+theme.useless_gap   = 4 * theme.scaling
 theme.gap_single_client = false
-theme.border_width  = 2
+theme.border_width  = 2 * theme.scaling
 theme.border_normal = "#242424"
 theme.border_focus  = "#555555"
 theme.border_marked = "#242424"
@@ -53,8 +55,8 @@ theme.layout_tilebottom = theme_path .."/layouts/tilebottomw.png"
 
 -- Variables set for theming the menu:
 theme.menu_submenu_icon = theme_path .. "submenu.png"
-theme.menu_height = 20
-theme.menu_width  = 150
+theme.menu_height = 20 * theme.scaling
+theme.menu_width  = 150 * theme.scaling
 
 -- Icons
 theme.icon_theme = Numix
@@ -68,6 +70,6 @@ theme.awesome_icon = theme_path .. "awesome32.png"
 
 theme.wallpaper = theme_path .. "/wallpaper/wall.png"
 
-theme.wibar_height = 26
+theme.wibar_height = 26 * theme.scaling
 
 return theme

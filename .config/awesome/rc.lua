@@ -203,14 +203,14 @@ local temp = lain.widget.temp({
 -- Battery
 -- battery progress bar
 local batbar = wibox.widget {
-    forced_width     = 40,
+    forced_width     = 40 * beautiful.scaling,
     color            = "#232323",
     background_color = "#ddd",
-    paddings         = 1,
+    paddings         = 1 * beautiful.scaling,
     widget           = wibox.widget.progressbar,
 }
 local batbar_bg = wibox.container.background(batbar, "#0f0", gears.shape.rectangle)
-local bat_widget = wibox.container.margin(batbar_bg, 2, 7, 7, 6) -- l r t b
+local bat_widget = wibox.container.margin(batbar_bg, 2 * beautiful.scaling, 7 * beautiful.scaling, 7 * beautiful.scaling, 6 * beautiful.scaling) -- l r t b
 local bat_icon = wibox.widget.imagebox(beautiful.bat_icon)
 -- Lain widget to show bat percent, also shows notifications
 local bat = lain.widget.bat({

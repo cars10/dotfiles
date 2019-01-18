@@ -17,6 +17,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'bling/vim-bufferline'
     " Youcompleteme: Autocomplete
     Plug 'valloric/youcompleteme'
+    " rust.vim: provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
+    Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " Plugin configuration
@@ -32,6 +34,10 @@ nmap <C-s> :w<CR>
 nmap <C-q> :qa!<CR>
 " map :w!! to 'save file with sudo'
 cmap w!! w !sudo tee > /dev/null %
+
+nmap <C-n> :!
+nmap <C-c> :! cargo check<CR>
+nmap <C-f> :RustFmt<CR>
 
 " Misc settings
 " be iMproved, required
@@ -64,8 +70,10 @@ set incsearch
 " Indentation
 set autoindent
 set expandtab
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
 set shiftwidth=4
-set smartindent
-set smarttab
-set softtabstop=4
- 
+" On pressing tab, insert 4 spaces
+set expandtab
+

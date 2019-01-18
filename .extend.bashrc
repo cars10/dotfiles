@@ -30,6 +30,8 @@ alias printer='system-config-printer'       # .. because i tend to forget the co
 alias update='yaourt -Syua'                
 alias rustupdate='rustup self update && rustup update'
 alias sidekiq='bundle exec sidekiq -L /dev/stdout'
+alias curl='noglob curl'
+alias ffmpeg='noglob ffmpeg'
 # Git
 alias gd='git diff'
 alias gdc='git diff --cached'

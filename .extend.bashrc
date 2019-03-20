@@ -27,9 +27,8 @@ alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color
 alias cd..='cd ..'                          # fix stupid typo
 alias mirrors='sudo pacman-mirrors -f 25'   # Update pacman mirrorslist with 15 fastest mirrors
 alias printer='system-config-printer'       # .. because i tend to forget the command
-alias update='yaourt -Syua'                
 alias rustupdate='rustup self update && rustup update'
-alias sidekiq='bundle exec sidekiq -L /dev/stdout'
+alias sidekiq='bundle exec sidekiq -L /dev/stdout -c 10'
 alias curl='noglob curl'
 alias ffmpeg='noglob ffmpeg'
 # Git
@@ -45,8 +44,6 @@ alias gc='git commit --verbose'
 #####################################################################################
 ### ENV Variables
 #####################################################################################
-# better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 # default editor
 export EDITOR=/usr/bin/vim
 # Fix for ugly font rendering in intellij (and it's derivates: rubymine, webstorm, etc)

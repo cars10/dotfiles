@@ -39,6 +39,8 @@ alias gpl='git pull --prune && ([ -f Gemfile ] && command -v bundle > /dev/null 
 alias gps='git push'
 alias ga='git add'
 alias gc='git commit --verbose'
+alias gl="git log --pretty=format:'%C(yellow)%h%Creset%C(bold green)%d%Creset %s %Cgreen%ad %Cblue%an%x09' --date=short --no-merges"
+alias glp="git log --pretty=format:'%C(yellow)%h%Creset%C(bold green)%d%Creset %s %Cgreen%ad %Cblue%an%x09' --date=short --no-merges -p"
 
 
 #####################################################################################

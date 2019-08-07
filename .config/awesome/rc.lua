@@ -189,7 +189,7 @@ local cpu = lain.widget.cpu({
 -- Coretemp
 local temp_icon = wibox.widget.imagebox(beautiful.temp_icon)
 local temp = lain.widget.temp({
-    timeout = 10,
+    timeout = 5,
     settings = function()
         if coretemp_now > 85 then
             widget:set_markup(markup.font(beautiful.font, markup.fg.color(beautiful.red, " " .. coretemp_now .. " °C ")))

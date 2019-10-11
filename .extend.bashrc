@@ -23,7 +23,7 @@ alias vi='vim'
 alias cp='cp -i'                            # confirm before overwriting something
 alias df='df -h'                            # human-readable sizes
 alias tailf='tail -f'                       # 'tailf' is deprecated on arch.
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F -h'
+alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F -h -a'
 alias cd..='cd ..'                          # fix stupid typo
 alias mirrors='sudo pacman-mirrors -f 25'   # Update pacman mirrorslist with 15 fastest mirrors
 alias printer='system-config-printer'       # .. because i tend to forget the command
@@ -31,6 +31,8 @@ alias rustupdate='rustup self update && rustup update'
 alias sidekiq='bundle exec sidekiq -L /dev/stdout -c 10'
 alias curl='noglob curl'
 alias ffmpeg='noglob ffmpeg'
+alias cp='acp -g'
+alias mv='amv -g'
 # Git
 alias gd='git diff'
 alias gdc='git diff --cached'

@@ -20,8 +20,14 @@ theme.font          = "Cantarell 10"
 -- Recurring colors
 theme.orange = "#fc7440"
 theme.green = "#a0d468"
-theme.blue = "#4fc0e9"
+--theme.blue = "#4fc0e9"
 theme.red = "#f00"
+-- color palette
+theme.dark_blue = "#03172F"
+theme.blue = "#0A3B5A"
+theme.light_blue = "#1E637E"
+theme.cyan = "#3FA1B0"
+default_color = theme.dark_blue
 
 theme.bg_normal     = default_color
 theme.bg_focus      = default_color
@@ -29,7 +35,7 @@ theme.titlebar_bg_focus = default_color
 theme.taglist_bg_focus = "#555555"
 theme.bg_urgent     = theme.orange
 theme.bg_minimize   = "#3c5a6b"
-theme.bg_systray    = default_focus_color
+theme.bg_systray    = theme.blue
 
 theme.fg_normal     = "#cccccc"
 theme.fg_focus      = "#ffffff"
@@ -38,9 +44,9 @@ theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = 4 * theme.scaling
 theme.gap_single_client = false
-theme.border_width  = 2 * theme.scaling
-theme.border_normal = "#242424"
-theme.border_focus  = "#555555"
+theme.border_width  = 1 * theme.scaling
+theme.border_normal = default_color
+theme.border_focus  = theme.blue
 theme.border_marked = "#242424"
 
 -- Display the taglist squares
@@ -68,7 +74,7 @@ theme.temp_icon = theme_path .. "icons/temp_icon_v2.png"
 theme.bat_icon = theme_path .. "icons/bat_icon.png"
 theme.awesome_icon = theme_path .. "awesome32.png"
 
-theme.wallpaper = theme_path .. "/wallpaper/wall.png"
+theme.wallpaper = theme_path .. "/wallpaper/wall.jpg"
 
 theme.wibar_height = 26 * theme.scaling
 

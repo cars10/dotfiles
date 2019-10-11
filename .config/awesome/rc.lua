@@ -223,7 +223,7 @@ local bat = lain.widget.bat({
         if bat_now.perc > 80 then
             batbar:set_color(beautiful.green)
         elseif bat_now.perc <= 80 and bat_now.perc > 30 then
-            batbar:set_color(beautiful.blue)
+            batbar:set_color("#4fc0e9")
         elseif bat_now.perc <= 30 and bat_now.perc > 15 then
             batbar:set_color(beautiful.orange)
         elseif bat_now.perc <= 15 then

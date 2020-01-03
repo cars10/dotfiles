@@ -124,3 +124,20 @@ eval $(dircolors -b ~/.dir_colors)
 # Load bash completion scripts. Depending on your distro these might not be available at this path.
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
+lazynvm() {
+    if [[ -z $NVM_LOADED ]]; then
+        unset -f nvm
+        export NVM_DIR=~/.nvm
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+        if [ -f "$NVM_DIR/bash_completion" ]; then
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+        fi
+        NVM_LOADED=1
+    fi
+}
+
+nvm() {
+  lazynvm
+  nvm $@
+}
+

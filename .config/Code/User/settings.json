@@ -1,24 +1,32 @@
 {
-    "window.zoomLevel": 1,
-    "terminal.integrated.fontFamily": "DejaVu Sans Mono",
-    "workbench.iconTheme": "vs-seti",
-    "rust.rustup": {
-        "toolchain": "stable-x86_64-unknown-linux-gnu",
-        "nightlyToolchain": "nightly-x86_64-unknown-linux-gnu"
+    "window.zoomLevel": 0,
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#80CBC4",
+        "list.activeSelectionForeground": "#80CBC4",
+        "list.inactiveSelectionForeground": "#80CBC4",
+        "list.highlightForeground": "#80CBC4",
+        "scrollbarSlider.activeBackground": "#80CBC450",
+        "editorSuggestWidget.highlightForeground": "#80CBC4",
+        "textLink.foreground": "#80CBC4",
+        "progressBar.background": "#80CBC4",
+        "pickerGroup.foreground": "#80CBC4",
+        "tab.activeBorder": "#80CBC4",
+        "notificationLink.foreground": "#80CBC4"
     },
-    "rust.mode": "rls",
-    "rust.rls": {
-        "useRustfmt": true
+    "materialTheme.cache.workbench.settings": {
+        "accent": "Teal",
+        "accentPrevious": "Graphite"
     },
-    "rust.build_lib": true,
-    "workbench.colorTheme": "Atom One Dark",
-    "vsicons.dontShowNewVersionMessage": true,
-    "explorer.confirmDragAndDrop": false,
+    "workbench.editor.enablePreview": false,
     "explorer.confirmDelete": false,
-    "files.associations": {
-        "*.yml": "ansible"
+    "editor.multiCursorModifier": "alt",
+    "extensions.ignoreRecommendations": true,
+    "explorer.compactFolders": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.tabSize": 2,
-    "workbench.editor.enablePreview": false
+    "rust.wait_to_build": 500,
+    "editor.parameterHints.enabled": false,
+    "rust-analyzer.displayInlayHints": false,
+    "editor.codeLens": false
 }
-

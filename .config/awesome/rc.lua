@@ -341,7 +341,7 @@ globalkeys = button_table.join(
     awful.key({ modkey }, "Right",  awful.tag.viewnext,        {description = "view next", group = "tag"}),
     awful.key({ modkey }, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
     awful.key({ modkey }, "w",      function () mymainmenu:show() end, {description = "show main menu", group = "awesome"}),
-    awful.key({}, "Print", function() awful.util.spawn ("screen") end),
+    awful.key({}, "Print", function() awful.util.spawn ("flameshot gui") end),
     awful.key({}, "XF86Calculator", function() awful.util.spawn ("copy_line_marker") end),
     awful.key({}, "Pause", function() awful.util.spawn ("screencast") end),
     awful.key({}, "XF86MonBrightnessUp", function() xf86helpers.brightness.inc() end),

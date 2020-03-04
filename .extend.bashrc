@@ -53,7 +53,7 @@ export EDITOR=/usr/bin/vim
 # Fix for ugly font rendering in intellij (and it's derivates: rubymine, webstorm, etc)
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # $PATH adjustments for various programming language environments
-export PATH="$PATH:$HOME/.rvm/bin"     # Add RVM to PATH for scripting
+export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"   # Add cargo bin to PATH to use rust binaries
 export PATH="$PATH:/usr/local/go/bin"  # Add go bin to PATH
 # fix "xdg-open fork-bomb" export your preferred browser from here
@@ -119,8 +119,6 @@ xset b off
 #####################################################################################
 # eval dircolors config
 eval $(dircolors -b ~/.dir_colors)
-# Load rvm into the shell (as a functionn)
-[[ -f "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 # Load bash completion scripts. Depending on your distro these might not be available at this path.
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
@@ -141,3 +139,4 @@ nvm() {
   nvm $@
 }
 
+eval "$(rbenv init -)"

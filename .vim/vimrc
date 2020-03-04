@@ -15,8 +15,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'sheerun/vim-polyglot'
     " Bufferline: show open buffers - automatically integrated in airline
     Plug 'bling/vim-bufferline'
-    " Youcompleteme: Autocomplete
-    Plug 'valloric/youcompleteme'
     " rust.vim: provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
     Plug 'rust-lang/rust.vim'
 call plug#end()

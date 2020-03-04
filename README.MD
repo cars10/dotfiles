@@ -28,7 +28,7 @@ This repo includes most of the dotfiles that i use on every system.
 | Setting       | Theme |
 | ------------- | ------ |
 | Icons         | [Numix](https://github.com/numixproject/numix-icon-theme)
-| Cursor        | `Breeze` | 
+| Cursor        | `vimix-cursors` | 
 | GTK 2 / 3     | [VimixDark-Laptop-Beryl](https://github.com/vinceliuice/vimix-gtk-themes) |
 | QT 4 / 5      | Style is set to `GTK` |
 | Awesome WM    | Custom theme |

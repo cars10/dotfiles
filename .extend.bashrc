@@ -103,12 +103,6 @@ pmi () {
   pacman -Q |grep $1
 }
 
-# show rails routes in readable columns
-# usage: routes scorm
-routes () {
-  bundle exec rake routes | rg "Prefix|$1" | tr -s " " | column -t -s" "
-}
-
 #####################################################################################
 ### Misc
 #####################################################################################

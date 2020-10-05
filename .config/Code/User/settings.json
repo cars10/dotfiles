@@ -28,5 +28,8 @@
     "rust.wait_to_build": 500,
     "editor.parameterHints.enabled": false,
     "rust-analyzer.displayInlayHints": false,
-    "editor.codeLens": false
+    "editor.codeLens": false,
+    "rust-analyzer.inlayHints.parameterHints": false,
+    "rust-analyzer.inlayHints.typeHints": false,
+    "rust-analyzer.inlayHints.chainingHints": false
 }

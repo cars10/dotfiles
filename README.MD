@@ -28,7 +28,7 @@ This repo includes most of the dotfiles that i use on every system.
 | Setting       | Theme |
 | ------------- | ------ |
 | Icons         | [Numix](https://github.com/numixproject/numix-icon-theme)
-| Cursor        | `Breeze` | 
+| Cursor        | [vimix-cursors](https://github.com/vinceliuice/Vimix-cursors) | 
 | GTK 2 / 3     | [VimixDark-Laptop-Beryl](https://github.com/vinceliuice/vimix-gtk-themes) |
 | QT 4 / 5      | Style is set to `GTK` |
 | Awesome WM    | Custom theme |
@@ -39,8 +39,8 @@ This repo includes most of the dotfiles that i use on every system.
 ## Fonts
 | Where | Font |
 | ----- | ---- |
-| Terminal (`sakura`) | [Droid Sans Mono for Powerline 11](https://github.com/powerline/fonts) | 
-| IDE's, editors, etc | [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) | 
+| Terminal (`sakura`) | [Hack](https://github.com/source-foundry/Hack) | 
+| IDE's, editors, etc | [Hack](https://github.com/source-foundry/Hack) | 
 | GTK/QT Applications | `Noto Sans`
 
 ## Vim setup

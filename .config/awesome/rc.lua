@@ -16,6 +16,7 @@ local button_table = awful.util.table
 local markup = lain.util.markup
 local math = require("math")
 
+naughty.config.defaults['icon_size'] = 100
 local xf86helpers = require("xf86helpers")
 
 -- {{{ Error handling
@@ -168,13 +169,13 @@ function round(what, precision)
 end
 
 -- Clock
-clock_widget = wibox.widget.textclock(" %a, %d.%m.   %H:%M ")
+clock_widget = wibox.widget.textclock(" %a, %d.%m.  %H:%M ")
 
 -- MEM
 local mem_icon = wibox.widget.imagebox(beautiful.mem_icon)
 local mem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(beautiful.font, " " .. round(mem_now.used/1024, 2) .. "GB "))
+        widget:set_markup(markup.font(beautiful.font_mono, " " .. round(mem_now.used/1024, 2) .. "GB "))
     end
 })
 
@@ -182,21 +183,23 @@ local mem = lain.widget.mem({
 local cpu_icon = wibox.widget.imagebox(beautiful.cpu_icon)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.font(beautiful.font, " " .. cpu_now.usage .. "% "))
+        local padded = string.format("%02d", cpu_now.usage)
+        widget:set_markup(markup.font(beautiful.font_mono, " " .. padded .. "% "))
     end
 })
 
 -- Coretemp
 local temp_icon = wibox.widget.imagebox(beautiful.temp_icon)
 local temp = lain.widget.temp({
-    timeout = 5,
+    timeout = 2,
+    tempfile = "/sys/class/hwmon/hwmon3/temp1_input",
     settings = function()
         if coretemp_now > 85 then
-            widget:set_markup(markup.font(beautiful.font, markup.fg.color(beautiful.red, " " .. coretemp_now .. " °C ")))
+            widget:set_markup(markup.font(beautiful.font_mono, markup.fg.color(beautiful.red, " " .. round(coretemp_now, 1) .. " °C ")))
         elseif coretemp_now > 70 then
-            widget:set_markup(markup.font(beautiful.font, markup.fg.color(beautiful.orange, " " .. coretemp_now .. " °C ")))
+            widget:set_markup(markup.font(beautiful.font_mono, markup.fg.color(beautiful.orange, " " .. round(coretemp_now, 1) .. " °C ")))
         else
-            widget:set_markup(markup.font(beautiful.font, " " .. coretemp_now .. "°C "))
+            widget:set_markup(markup.font(beautiful.font_mono, " " .. round(coretemp_now, 1) .. "°C "))
         end
     end
 })
@@ -314,11 +317,7 @@ awful.screen.connect_for_each_screen(function(s)
           temp_icon,
           temp,
           arrow_systray_inv,
-          wibox.container.background(bat_icon, beautiful.bg_systray),
-          wibox.container.background(bat.widget, beautiful.bg_systray),
-          wibox.container.background(bat_widget, beautiful.bg_systray),
-          arrow_systray,
-          clock_widget,
+          wibox.container.background(clock_widget, beautiful.bg_systray),
           s.mylayoutbox,
       },
   }

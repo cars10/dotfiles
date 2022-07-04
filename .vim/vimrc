@@ -56,7 +56,7 @@ set showbreak=+++
 set showmatch
 set visualbell
 syntax on
-colorscheme delek
+colorscheme slate
 
 " Case sensivity
 set hlsearch

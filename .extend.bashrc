@@ -26,7 +26,8 @@ alias mv='amv -g'
 # Git
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias gpl='git pull --prune && ([ -f Gemfile ] && command -v bundle > /dev/null && bundle --quiet) || true && ([ -f package.json ] && yarn --silent) || true'
+alias gf='git fetch --prune'
+alias gpl='git pull --prune && ([ -f Gemfile ] && command -v bundle > /dev/null && bundle --quiet) || true && ([ -f .nvmrc ] && nvm use) || true && ([ -f package.json ] && yarn --silent) || true'
 alias gps='git push'
 alias ga='git add'
 alias gc='git commit --verbose'
@@ -34,6 +35,7 @@ alias gc='git commit --verbose'
 #####################################################################################
 ### ENV Variables
 #####################################################################################
+export BAT_PAGER=""
 # default editor
 export EDITOR=/usr/bin/vim
 # Fix for ugly font rendering in intellij (and it's derivates: rubymine, webstorm, etc)
@@ -41,7 +43,16 @@ _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # $PATH adjustments for various programming language environments
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"   # Add cargo bin to PATH to use rust binaries
+<<<<<<< HEAD
 # bash history
+=======
+export PATH="$PATH:/usr/local/go/bin"  # Add go bin to PATH
+# fix "xdg-open fork-bomb" export your preferred browser from here
+export BROWSER=/usr/bin/google-chrome
+# FZF: use rg to search
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+# History
+>>>>>>> 9626edc (various config file updates)
 HISTFILE=~/.bash_history
 HISTFILESIZE=25000
 HISTSIZE=25000
@@ -59,6 +70,15 @@ xset b off
 # Includes
 #####################################################################################
 eval $(dircolors -b ~/.dir_colors)
+<<<<<<< HEAD
+=======
+# Load bash completion scripts. Depending on your distro these might not be available at this path.
+#[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+>>>>>>> 9626edc (various config file updates)
 
 lazynvm() {
     if [[ -z $NVM_LOADED ]]; then

@@ -9,13 +9,14 @@ local lain = require("lain")
 local theme = {}
 local button_table = awful.util.table
 
-theme.scaling = 1.75
+theme.scaling = 1.2
 
 theme_path = "~/.config/awesome/custom-material/"
 default_color = "#282A30"
 default_focus_color = "#555555"
 
-theme.font          = "Cantarell 10"
+theme.font          = "Cantarell 12"
+theme.font_mono = "Hack 12"
 
 -- Recurring colors
 theme.orange = "#fc7440"

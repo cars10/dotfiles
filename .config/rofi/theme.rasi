@@ -3,6 +3,7 @@
  * Rofi version: 1.6.1
  **/
 * {
+    font: "hack 13";
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-active-foreground:  rgba ( 128, 203, 196, 100 % );
     lightfg:                     rgba ( 88, 104, 117, 100 % );

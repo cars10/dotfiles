@@ -71,6 +71,7 @@ theme.tasklist_disable_icon = true
 
 theme.mem_icon = theme_path .. "icons/mem_icon_v2.png"
 theme.cpu_icon = theme_path .. "icons/cpu_icon_v2.png"
+theme.gpu_icon = theme_path .. "icons/gpu_icon.png"
 theme.temp_icon = theme_path .. "icons/temp_icon_v2.png"
 theme.bat_icon = theme_path .. "icons/bat_icon.png"
 theme.awesome_icon = theme_path .. "awesome32.png"

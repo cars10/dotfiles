@@ -184,7 +184,7 @@ local cpu_icon = wibox.widget.imagebox(beautiful.cpu_icon)
 local cpu = lain.widget.cpu({
     settings = function()
         local padded = string.format("%02d", cpu_now.usage)
-        widget:set_markup(markup.font(beautiful.font_mono, " " .. padded .. "% "))
+        widget:set_markup(markup.font(beautiful.font_mono, "" .. padded .. "% "))
     end
 })
 
@@ -195,16 +195,16 @@ local temp = lain.widget.temp({
     tempfile = "/sys/class/hwmon/hwmon3/temp1_input",
     settings = function()
         if coretemp_now > 85 then
-            widget:set_markup(markup.font(beautiful.font_mono, markup.fg.color(beautiful.red, " " .. round(coretemp_now, 1) .. " °C ")))
+            widget:set_markup(markup.font(beautiful.font_mono, markup.fg.color(beautiful.red, math.floor(coretemp_now) .. " ° ")))
         elseif coretemp_now > 70 then
-            widget:set_markup(markup.font(beautiful.font_mono, markup.fg.color(beautiful.orange, " " .. round(coretemp_now, 1) .. " °C ")))
+            widget:set_markup(markup.font(beautiful.font_mono, markup.fg.color(beautiful.orange, math.floor(coretemp_now, 0) .. " ° ")))
         else
-            widget:set_markup(markup.font(beautiful.font_mono, " " .. round(coretemp_now, 1) .. "°C "))
+            widget:set_markup(markup.font(beautiful.font_mono, math.floor(coretemp_now, 0) .. "° "))
         end
     end
 })
 
--- Battery
+--[[ -- Battery
 -- battery progress bar
 local batbar = wibox.widget {
     forced_width     = 40 * beautiful.scaling,
@@ -234,7 +234,72 @@ local bat = lain.widget.bat({
         end
         batbar:set_value(bat_now.perc/100)
     end
-})
+}) ]]
+
+-- GPU
+local gpu_icon = wibox.widget.imagebox(beautiful.gpu_icon)
+local gpu_usage = wibox.widget {
+    {
+        id           = "gpu_usage",
+        text         = "00% ",
+        widget       = wibox.widget.textbox,
+    },
+    layout      = wibox.layout.stack,
+    set_temp = function(self, val)
+        local padded = string.format("%02d", tonumber(val))
+        self.gpu_usage.text  = padded.."% "
+    end,
+}
+local gpu_temp = wibox.widget {
+    {
+        id           = "gpu_temp",
+        text         = " 0° ",
+        widget       = wibox.widget.textbox,
+    },
+    layout      = wibox.layout.stack,
+    set_temp = function(self, val)
+        self.gpu_temp.text  = " "..tonumber(val).."° "
+    end,
+}
+local gpu_fan = wibox.widget {
+    {
+        id           = "gpu_fan",
+        text         = "F00% ",
+        widget       = wibox.widget.textbox,
+    },
+    layout      = wibox.layout.stack,
+    set_temp = function(self, val)
+        local padded = string.format("%02d", tonumber(val))
+        self.gpu_fan.text  = " F"..padded.."% "
+    end,
+}
+
+gears.timer {
+    timeout   = 2,
+    call_now  = true,
+    autostart = true,
+    callback  = function()
+        awful.spawn.easy_async(
+            {"sh", "-c", "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader"},
+            function(out)
+                gpu_temp.temp = out
+            end
+        )
+        awful.spawn.easy_async(
+            {"sh", "-c", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits "},
+            function(out)
+                gpu_usage.temp = out
+            end
+        )
+        awful.spawn.easy_async(
+            {"sh", "-c", "nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits "},
+            function(out)
+                gpu_fan.temp = out
+            end
+        )
+    end
+}
+
 
 -- Calendar
 local calendar = lain.widget.cal({
@@ -313,9 +378,12 @@ awful.screen.connect_for_each_screen(function(s)
           arrow_systray_inv,
           wibox.container.background(cpu_icon, beautiful.bg_systray),
           wibox.container.background(cpu.widget, beautiful.bg_systray),
+          wibox.container.background(temp.widget, beautiful.bg_systray),
           arrow_systray,
-          temp_icon,
-          temp,
+          gpu_icon,
+          gpu_usage,
+          gpu_temp,
+          gpu_fan,
           arrow_systray_inv,
           wibox.container.background(clock_widget, beautiful.bg_systray),
           s.mylayoutbox,

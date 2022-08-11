@@ -7,34 +7,23 @@ This repo includes most of the dotfiles that i use on every system.
 | --------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `.dir_colors`                                             | Set colors used by GNU `ls`                                                   |
 | `.extend.bashrc`                                          | `bash` / `zsh` configuration file. Includes aliases, env variables, etc.      |
-| `.gtkrc-2.0`                                              | `GTK 2` theme configuration                                                   |
-| `.nanorc`                                                 | `nano` syntax highlighting                                                    | 
 | `.Xresources`                                             | `XServer` DPI and display settings, rofi theme                                | 
-| `.yaourtrc`                                               | `yaourt` aur helper configuration                                             | 
 | `.zshrc`                                                  | `Z shell` configuration                                                       |
-| `.config/blender/../userpref.blend`                       | `blender` 3D software configuration                                           | 
-| `.config/Code/User/keybindings.json`                      | `Visual Studio Code` keybindings - [Visual Studio Code](https://code.visualstudio.com/) |
-| `.config/Code/User/settings.json`                         | `Visual Studio Code` theme and misc settings - [Visual Studio Code](https://code.visualstudio.com/)
-| `.config/gtk-3.0/settings.ini`                            | `GTK 3` theme configuration | 
-| `.config/qt5ct/qt5ct.conf`                                | `QT5` Theme configuration |
 | `.config/sakura/sakura.conf`                              | `sakura` terminal theme and other settings | 
-| `.config/spotify/User/../prefs`                           | `Spotify` configuration | 
-| `.config/compton.conf`                                    | `compton` composite manager configuration | 
-| `.config/Trolltech.conf`                                  | `QT4` theme configuration | 
 | `usr/share/oh-my-zsh/themes/agnoster-custom.zsh-theme`    | `oh-my-zsh` custom theme, based on `agnoster` [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)  | 
-| `.vim/vimrc`                                              | `vim` configuration | 
+| `.vim/vimrc`                                              | `vim` configuration |
+| `.config/awesome`                                         | `awesomewm` configuration |
 
 ## Themes
 | Setting       | Theme |
 | ------------- | ------ |
-| Icons         | [Numix](https://github.com/numixproject/numix-icon-theme)
+| Icons         | Papirus-Dark |
 | Cursor        | [vimix-cursors](https://github.com/vinceliuice/Vimix-cursors) | 
-| GTK 2 / 3     | [VimixDark-Laptop-Beryl](https://github.com/vinceliuice/vimix-gtk-themes) |
-| QT 4 / 5      | Style is set to `GTK` |
+| GTK 2 / 3     | Matcha-dark-azul |
 | Awesome WM    | Custom theme |
 | Rofi          | Custom theme |
 | Sakura        | Custom theme |
-| vim           | Delek        |
+| vim           | deus        |
 
 ## Fonts
 | Where | Font |
@@ -56,4 +45,3 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## TODO
 - Screenshot
-- Awesome config

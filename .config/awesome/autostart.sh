@@ -3,8 +3,8 @@
 killall conky 
 conky &
 
-killall nextcloud
-nextcloud &
+#killall nextcloud
+#nextcloud &
 
 killall nm-applet
 nm-applet &
@@ -12,7 +12,6 @@ nm-applet &
 killall pasystray
 pasystray &
 
-nvidia-settings --assign GPULogoBrightness=0
+bash /home/cars10/.screenlayout/test.sh
 
-bash ~/Documents/resolution.sh
 

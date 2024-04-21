@@ -31,6 +31,11 @@ alias gpl='git pull --prune && ([ -f Gemfile ] && command -v bundle > /dev/null 
 alias gps='git push'
 alias ga='git add'
 alias gc='git commit --verbose'
+# docker
+alias dc='docker compose'
+alias dcu='docker compose up'
+alias dcud='docker compose up -d'
+alias dcd='docker compose down'
 
 #####################################################################################
 ### ENV Variables
@@ -71,7 +76,6 @@ eval $(dircolors -b ~/.dir_colors)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 lazynvm() {
     if [[ -z $NVM_LOADED ]]; then

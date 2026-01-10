@@ -179,6 +179,40 @@ local mem = lain.widget.mem({
     end
 })
 
+
+-- Battery
+-- battery progress bar
+local batbar = wibox.widget {
+    forced_width     = 80,
+    color            = "#232323",
+    background_color = "#03172f",
+    paddings         = 8,
+    widget           = wibox.widget.progressbar,
+}
+local batbar_bg = wibox.container.background(batbar, "#0f0", gears.shape.rectangle)
+local bat_widget = wibox.container.margin(batbar_bg, 2 * beautiful.scaling, 7 * beautiful.scaling, 7 * beautiful.scaling, 6 * beautiful.scaling) -- l r t b
+local bat_icon = wibox.widget.imagebox(beautiful.bat_icon)
+-- Lain widget to show bat percent, also shows notifications
+local bat = lain.widget.bat({
+    notify = "on",
+    timeout = 5,
+    battery = "BAT0",
+    n_perc = {5, 10},
+    settings = function()
+        widget:set_markup(markup.font(beautiful.font, bat_now.perc .. "% "))
+        if bat_now.perc > 80 then
+            batbar:set_color(beautiful.green)
+        elseif bat_now.perc <= 80 and bat_now.perc > 30 then
+            batbar:set_color("#4fc0e9")
+        elseif bat_now.perc <= 30 and bat_now.perc > 15 then
+            batbar:set_color(beautiful.orange)
+        elseif bat_now.perc <= 15 then
+            batbar:set_color(beautiful.red)
+        end
+        batbar:set_value(bat_now.perc/100)
+    end
+}) 
+
 -- CPU
 local cpu_icon = wibox.widget.imagebox(beautiful.cpu_icon)
 local cpu = lain.widget.cpu({
@@ -264,7 +298,7 @@ gears.timer {
             end
         )
         awful.spawn.easy_async(
-            {"sh", "-c", "cat /sys/class/hwmon/hwmon3/temp1_input"},
+            {"sh", "-c", "cat /sys/class/thermal/thermal_zone0/temp"},
             function(out)
                 cpu_temp.temp = out
             end
@@ -352,10 +386,8 @@ awful.screen.connect_for_each_screen(function(s)
           wibox.container.background(cpu.widget, beautiful.bg_systray),
           wibox.container.background(cpu_temp, beautiful.bg_systray),
           arrow_systray,
-          gpu_icon,
-          gpu_usage,
-          gpu_temp,
-          gpu_fan,
+	  bat,
+	  batbar,
           arrow_systray_inv,
           wibox.container.background(clock_widget, beautiful.bg_systray),
           s.mylayoutbox,

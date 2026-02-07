@@ -63,4 +63,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Set zsh user
 DEFAULT_USER=$USER
-

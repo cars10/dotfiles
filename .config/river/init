@@ -1,0 +1,63 @@
+#!/bin/sh
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+riverctl spawn "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+riverctl spawn "gsettings set org.gnome.desktop.interface gtk-theme 'Arc-dark'"
+
+# --- Variables ---
+MOD="Mod4"
+TERM="foot"
+MENU="fuzzel"
+
+# --- Keyboard & Input ---
+riverctl set-repeat 50 300
+riverctl focus-follows-cursor normal
+riverctl set-cursor-warp on-focus-change
+riverctl keyboard-layout -variant nodeadkeys de
+riverctl set-view-bounds normal free
+
+# Laptop Touchpad (Tap-to-click and Natural Scrolling)
+riverctl input "type:touchpad" tap enabled
+riverctl input "type:touchpad" natural-scroll enabled
+
+# --- Keybindings ---
+riverctl map normal $MOD Return spawn $TERM
+riverctl map normal $MOD R      spawn "$MENU"
+riverctl map normal $MOD Q      close
+riverctl map normal $MOD E spawn "thunar"
+riverctl map normal $MOD+Shift E exit
+
+# Focus/Swap (AwesomeWM style)
+riverctl map normal $MOD J focus-view next
+riverctl map normal $MOD K focus-view previous
+riverctl map normal $MOD+Shift J swap-view next
+riverctl map normal $MOD+Shift K swap-view previous
+riverctl map normal $MOD Space toggle-float
+
+# --- Independent Tags (Per-Monitor) ---
+for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal $MOD $i set-focused-tags $tags
+    riverctl map normal $MOD+Shift $i set-view-tags $tags
+done
+
+# --- Mouse Bindings ---
+riverctl map-pointer normal $MOD BTN_LEFT move-view
+riverctl map-pointer normal $MOD BTN_RIGHT resize-view
+
+# --- Laptop Special Keys ---
+riverctl map normal None XF86AudioRaiseVolume spawn "pamixer -i 5"
+riverctl map normal None XF86AudioLowerVolume spawn "pamixer -d 5"
+riverctl map normal None XF86AudioMute        spawn "pamixer -t"
+riverctl map normal None XF86MonBrightnessUp  spawn "brightnessctl set +10%"
+riverctl map normal None XF86MonBrightnessDown spawn "brightnessctl set 10%-"
+
+# --- Screenshots ---
+riverctl map normal $MOD+Shift S spawn "grim -g \"\$(slurp)\" - | satty --filename - "
+
+
+# --- Layout & Autostart ---
+riverctl default-layout rivertile
+riverctl spawn "rivertile -view-padding 2"
+riverctl spawn "waybar"
+riverctl spawn "mako"
+riverctl spawn "wbg /opt/wallpapers/arch_flat.png"

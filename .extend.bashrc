@@ -21,8 +21,6 @@
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F -h -a'
 alias cd..='cd ..'                          # fix stupid typo
 alias mirrors='sudo pacman-mirrors -f 25'   # Update pacman mirrorslist with 15 fastest mirrors
-alias cp='acp -g'
-alias mv='amv -g'
 # Git
 alias gd='git diff'
 alias gdc='git diff --cached'
@@ -35,6 +33,7 @@ alias dc='docker compose'
 alias dcu='docker compose up'
 alias dcud='docker compose up -d'
 alias dcd='docker compose down'
+alias ds='docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'
 
 #####################################################################################
 ### ENV Variables
@@ -47,7 +46,7 @@ _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # $PATH adjustments for various programming language environments
 export PATH="$PATH:$HOME/.cargo/bin"   # Add cargo bin to PATH to use rust binaries
 # fix "xdg-open fork-bomb" export your preferred browser from here
-export BROWSER=/usr/bin/google-chrome
+export BROWSER=/usr/bin/google-chrome-stable
 # FZF: use rg to search
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 # History

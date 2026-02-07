@@ -183,14 +183,16 @@ local mem = lain.widget.mem({
 -- Battery
 -- battery progress bar
 local batbar = wibox.widget {
+    ticks = true,
+    ticks_size = 5,
     forced_width     = 80,
-    color            = "#232323",
-    background_color = "#03172f",
-    paddings         = 8,
+    color            = "#fff",
+    background_color = "#232323",
+    paddings         = 2,
     widget           = wibox.widget.progressbar,
 }
 local batbar_bg = wibox.container.background(batbar, "#0f0", gears.shape.rectangle)
-local bat_widget = wibox.container.margin(batbar_bg, 2 * beautiful.scaling, 7 * beautiful.scaling, 7 * beautiful.scaling, 6 * beautiful.scaling) -- l r t b
+local bat_widget = wibox.container.margin(batbar_bg, 2, 7, 7, 6) -- l r t b
 local bat_icon = wibox.widget.imagebox(beautiful.bat_icon)
 -- Lain widget to show bat percent, also shows notifications
 local bat = lain.widget.bat({
@@ -236,67 +238,12 @@ local cpu_temp = wibox.widget {
     end,
 }
 
--- GPU
-local gpu_icon = wibox.widget.imagebox(beautiful.gpu_icon)
-local gpu_usage = wibox.widget {
-    {
-        id           = "gpu_usage",
-        text         = "00% ",
-        widget       = wibox.widget.textbox,
-    },
-    layout      = wibox.layout.stack,
-    set_temp = function(self, val)
-        local padded = string.format("%02d", math.ceil(tonumber(val)))
-        self.gpu_usage.text  = padded.."% "
-    end,
-}
-local gpu_temp = wibox.widget {
-    {
-        id           = "gpu_temp",
-        text         = " 0° ",
-        widget       = wibox.widget.textbox,
-    },
-    layout      = wibox.layout.stack,
-    set_temp = function(self, val)
-        self.gpu_temp.text  = " "..tonumber(val).."° "
-    end,
-}
-local gpu_fan = wibox.widget {
-    {
-        id           = "gpu_fan",
-        text         = "F00% ",
-        widget       = wibox.widget.textbox,
-    },
-    layout      = wibox.layout.stack,
-    set_temp = function(self, val)
-        local padded = string.format("%02d", math.floor((tonumber(val)/3300)*100))
-        self.gpu_fan.text  = " F"..padded.."% "
-    end,
-}
 
 gears.timer {
     timeout   = 3,
     call_now  = true,
     autostart = true,
     callback  = function()
-        awful.spawn.easy_async(
-            {"sh", "-c", "sensors amdgpu-pci-0c00 -j | jq '.\"amdgpu-pci-0c00\".edge.temp1_input'"},
-            function(out)
-                gpu_temp.temp = out
-            end
-        )
-        awful.spawn.easy_async(
-            {"sh", "-c", "radeontop -l 1 -d - | tail -n 1 | cut -d ',' -f 2 | cut -d ' ' -f 3 | sed -e 's/%//'"},
-            function(out)
-                gpu_usage.temp = out
-            end
-        )
-        awful.spawn.easy_async(
-            {"sh", "-c", "sensors amdgpu-pci-0c00 -j | jq '.\"amdgpu-pci-0c00\".fan1.fan1_input'"},
-            function(out)
-                gpu_fan.temp = out
-            end
-        )
         awful.spawn.easy_async(
             {"sh", "-c", "cat /sys/class/thermal/thermal_zone0/temp"},
             function(out)
@@ -387,7 +334,7 @@ awful.screen.connect_for_each_screen(function(s)
           wibox.container.background(cpu_temp, beautiful.bg_systray),
           arrow_systray,
 	  bat,
-	  batbar,
+	  bat_widget,
           arrow_systray_inv,
           wibox.container.background(clock_widget, beautiful.bg_systray),
           s.mylayoutbox,

@@ -71,3 +71,4 @@ eval $(dircolors -b ~/.dir_colors)
 # Load bash completion scripts. Depending on your distro these might not be available at this path.
 #[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

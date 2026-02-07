@@ -28,6 +28,7 @@ alias gf='git fetch --prune'
 alias gps='git push'
 alias ga='git add'
 alias gc='git commit --verbose'
+alias grc='git rebase --continue'
 # docker
 alias dc='docker compose'
 alias dcu='docker compose up'
@@ -41,10 +42,10 @@ alias ds='docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'
 export BAT_PAGER=""
 # default editor
 export EDITOR=/usr/bin/vim
-# Fix for ugly font rendering in intellij (and it's derivates: rubymine, webstorm, etc)
-_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # $PATH adjustments for various programming language environments
-export PATH="$PATH:$HOME/.cargo/bin"   # Add cargo bin to PATH to use rust binaries
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/google-chrome-stable
 # FZF: use rg to search
@@ -62,12 +63,3 @@ xhost +local:root > /dev/null 2>&1
 stty -ixon
 # disable beep
 xset b off
-
-#####################################################################################
-# Includes
-#####################################################################################
-eval $(dircolors -b ~/.dir_colors)
-# Load bash completion scripts. Depending on your distro these might not be available at this path.
-#[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

@@ -25,6 +25,7 @@ riverctl map normal $MOD R      spawn "$MENU"
 riverctl map normal $MOD Q      close
 riverctl map normal $MOD E spawn "thunar"
 riverctl map normal $MOD+Shift E exit
+riverctl map normal $MOD O send-to-output next # move to next screen
 
 # Focus/Swap (AwesomeWM style)
 riverctl map normal $MOD J focus-view next
@@ -60,4 +61,8 @@ riverctl default-layout rivertile
 riverctl spawn "rivertile -view-padding 2"
 riverctl spawn "waybar"
 riverctl spawn "mako"
-riverctl spawn "wbg /opt/wallpapers/arch_flat.png"
+riverctl spawn "wbg /home/cars10/Projects/dotfiles/arch_flat.png"
+riverctl spawn "wlr-randr \
+    --output DP-1 --mode 2560x1440@143.856Hz --pos 0,0 \
+    --output DP-3 --mode 1920x1080@60Hz --pos 2560,180"
+    

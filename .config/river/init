@@ -7,6 +7,7 @@ riverctl spawn "gsettings set org.gnome.desktop.interface gtk-theme 'Arc-dark'"
 MOD="Mod4"
 TERM="foot"
 MENU="fuzzel"
+export SDL_VIDEODRIVER=x11
 
 # --- Keyboard & Input ---
 riverctl set-repeat 50 300
@@ -14,6 +15,8 @@ riverctl focus-follows-cursor normal
 riverctl set-cursor-warp on-focus-change
 riverctl keyboard-layout -variant nodeadkeys de
 riverctl set-view-bounds normal free
+# Makes Steam menus and popups float so they don't break the layout
+riverctl rule-add -app-id 'steam' -title '.*' float
 
 # Laptop Touchpad (Tap-to-click and Natural Scrolling)
 riverctl input "type:touchpad" tap enabled

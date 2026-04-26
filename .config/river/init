@@ -11,7 +11,7 @@ export SDL_VIDEODRIVER=x11
 
 # --- Keyboard & Input ---
 riverctl set-repeat 50 300
-riverctl focus-follows-cursor normal
+riverctl focus-follows-cursor always
 riverctl set-cursor-warp on-focus-change
 riverctl keyboard-layout -variant nodeadkeys de
 riverctl set-view-bounds normal free

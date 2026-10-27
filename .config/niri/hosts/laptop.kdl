@@ -1,0 +1,5 @@
+// ThinkPad T480s. External monitors are auto-placed; add blocks here once their names are known.
+output "eDP-1" {
+    scale 1.0
+    position x=0 y=0
+}

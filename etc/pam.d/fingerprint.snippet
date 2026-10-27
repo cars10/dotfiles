@@ -1,0 +1,8 @@
+# Optional fingerprint for sudo and polkit (laptop). Not a PAM file itself; paste the line.
+# "sufficient" + placed first = finger succeeds immediately, otherwise falls through to password.
+#
+# /etc/pam.d/sudo                -> add as the FIRST auth line
+# /etc/pam.d/polkit-1            -> first: sudo cp /usr/lib/pam.d/polkit-1 /etc/pam.d/polkit-1
+#                                   then add as the FIRST auth line
+#
+auth       sufficient   pam_fprintd.so

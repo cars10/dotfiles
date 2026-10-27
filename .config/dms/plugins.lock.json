@@ -1,0 +1,9 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "dockerManager": {
+      "repo": "https://github.com/LuckShiba/DmsDockerManager",
+      "commit": "f6f7d94c84510da098980a2bb733137e90f98fd8"
+    }
+  }
+}

@@ -1,0 +1,166 @@
+// niri config shared by laptop and desktop.
+// Outputs live in hosts/<machine>.kdl; symlink the right one to host.kdl next to this file.
+// DMS is started by systemd (dms systemd enable --compositor niri), not from here.
+
+input {
+    keyboard {
+        xkb {
+            layout "de"
+            variant "nodeadkeys"
+        }
+        repeat-delay 300
+        repeat-rate 50
+    }
+    // Ignored on machines without a touchpad.
+    touchpad {
+        tap
+        dwt
+    }
+    focus-follows-mouse
+    warp-mouse-to-focus
+}
+
+layout {
+    gaps 5
+    // Transparent so the DMS wallpaper shows through in the overview.
+    background-color "transparent"
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.90
+    }
+    default-column-width { proportion 0.5; }
+}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/screenshot_%Y-%m-%d %H-%M-%S.png"
+
+environment {
+    QT_QPA_PLATFORM "wayland"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
+}
+
+// Docked lid close: logind ignores it (HandleLidSwitchDocked=ignore), so lock here.
+// Undocked lid close: logind suspends and DMS "lock before suspend" locks first.
+switch-events {
+    lid-close { spawn "dms" "ipc" "call" "lock" "lock"; }
+}
+
+layer-rule {
+    match namespace="^quickshell$"
+    place-within-backdrop true
+}
+
+// Steam popups float, main window tiles (river floated everything from steam).
+window-rule {
+    match app-id="steam"
+    exclude title="^Steam$"
+    open-floating true
+}
+
+binds {
+    Mod+ssharp hotkey-overlay-title="Show hotkeys" { show-hotkey-overlay; }
+
+    // Apps & shell
+    Mod+Return hotkey-overlay-title="Terminal" { spawn "foot"; }
+    Mod+R hotkey-overlay-title="Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+E hotkey-overlay-title="Files" { spawn "thunar"; }
+    Mod+V hotkey-overlay-title="Clipboard" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
+    Mod+N hotkey-overlay-title="Notifications" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Alt+L hotkey-overlay-title="Lock" { spawn "dms" "ipc" "call" "lock" "lock"; }
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+P { power-off-monitors; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // Windows
+    Mod+Q repeat=false { close-window; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Space { toggle-window-floating; }
+    Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
+    Mod+Tab { toggle-overview; }
+    Mod+C { center-column; }
+    Mod+W { switch-preset-column-width; }
+    Mod+Left { set-column-width "-5%"; }
+    Mod+Right { set-column-width "+5%"; }
+    Mod+Shift+Left { set-window-height "-5%"; }
+    Mod+Shift+Right { set-window-height "+5%"; }
+    Mod+Comma { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    // Focus / move (J/K = next/prev like river, H/L = columns)
+    Mod+J { focus-window-down-or-column-right; }
+    Mod+K { focus-window-up-or-column-left; }
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+Up { focus-window-up; }
+    Mod+Down { focus-window-down; }
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+
+    // Monitors
+    Mod+Ctrl+H { focus-monitor-left; }
+    Mod+Ctrl+L { focus-monitor-right; }
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+    Mod+O { move-column-to-monitor-next; }
+
+    // Workspaces (always on the focused monitor)
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+    Mod+Shift+U { move-column-to-workspace-down; }
+    Mod+Shift+I { move-column-to-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // Screenshots: DMS opens the capture in its editor, Print saves + copies directly.
+    Mod+Shift+S hotkey-overlay-title="Screenshot (edit)" { spawn "dms" "ipc" "call" "niri" "screenshot"; }
+    Print hotkey-overlay-title="Screenshot (save + copy)" { screenshot; }
+    Alt+Print { screenshot-window; }
+
+    // Media keys
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "5"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
+    XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "mic" "mute"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "10" ""; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "10" ""; }
+}
+
+include "host.kdl"
+
+// Written by DMS (Settings → Compositor / Displays / Keybinds). All must exist before niri starts:
+//   mkdir -p ~/.config/niri/dms && touch ~/.config/niri/dms/{colors,layout,alttab,cursor,windowrules,outputs,binds,input}.kdl
+// outputs.kdl comes after host.kdl, so changes made in DMS → Displays win over hosts/*.kdl.
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/cursor.kdl"
+include "dms/windowrules.kdl"
+include "dms/outputs.kdl"
+include "dms/binds.kdl"
+include "dms/input.kdl"

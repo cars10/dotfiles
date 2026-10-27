@@ -1,0 +1,7 @@
+{
+  "dockerManager": {
+    "enabled": true,
+    "terminalApp": "foot",
+    "groupByCompose": false
+  }
+}

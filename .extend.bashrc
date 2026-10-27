@@ -63,3 +63,6 @@ xhost +local:root > /dev/null 2>&1
 stty -ixon
 # disable beep
 xset b off
+
+
+powerprofilesctl set performance

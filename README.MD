@@ -25,6 +25,7 @@ touch ~/.config/niri/dms/{colors,layout,alttab,cursor,windowrules,outputs,binds,
 touch ~/.config/foot/dank-colors.ini
 ln -s ~/Projects/dotfiles/.config/niri/config.kdl ~/.config/niri/config.kdl
 ln -s ~/Projects/dotfiles/.config/niri/hosts ~/.config/niri/hosts
+ln -s ~/Projects/dotfiles/.config/niri/overrides.kdl ~/.config/niri/overrides.kdl
 ln -s hosts/desktop.kdl ~/.config/niri/host.kdl          # laptop: hosts/laptop.kdl
 ln -sf ~/Projects/dotfiles/.config/foot/foot.ini ~/.config/foot/foot.ini
 niri validate

@@ -1,0 +1,8 @@
+// Loaded last so it wins over the DMS-generated dms/colors.kdl.
+// Tones down the line around the focused window; the rest follows the DMS theme.
+// niri draws the focus ring (DMS sets width 2); the border stays off unless enabled with `on`.
+layout {
+    focus-ring {
+        active-color "#4f88b8"  // midway between DMS blue #42a5f5 and gray #5c6b7a
+    }
+}

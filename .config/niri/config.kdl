@@ -164,3 +164,6 @@ include "dms/windowrules.kdl"
 include "dms/outputs.kdl"
 include "dms/binds.kdl"
 include "dms/input.kdl"
+
+// Personal overrides on top of the DMS fragments; keep this include last.
+include "overrides.kdl"
